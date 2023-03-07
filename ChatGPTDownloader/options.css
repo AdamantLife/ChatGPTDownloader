@@ -1,0 +1,98 @@
+#menu{
+    text-align: center;
+    font-size: large;
+}
+table:has(#saved){
+    margin:auto;
+    border-spacing: 1em;
+    border-collapse: unset;
+}
+#saved td{
+    color:lightslategray;
+}
+#saved td:first-of-type{
+    cursor: pointer;
+}
+#saved td[data-trash],td[data-save]{
+    cursor: pointer;
+}
+#saved td:first-of-type:hover{
+    color:red;
+    font-weight: bold;
+}
+#saved td[data-save]>svg:hover{
+    color:black;
+    border-radius: 25%;
+    background-image: radial-gradient(lawngreen, RGBA(0,0,0,0));
+}
+#saved td[data-trash]>svg:hover{
+    color: black;
+    border-radius: 25%;
+    background-image: radial-gradient(red, RGBA(0,0,0,0));
+}
+
+#exitchat{
+    position: fixed;
+    top:5px;
+    left: 5px;
+    z-index: 100;
+}
+
+#print{
+    position: fixed;
+    top:5px;
+    right:5px;
+    z-index: 100;
+}
+
+#scrolltop{
+    position: fixed;
+    opacity: 0;
+    display: none;
+    top:5px;
+    left:50vw;
+    transform: translateX(-50%);
+    z-index: 100;
+    transition: opacity 1s linear;
+    background-image:radial-gradient(rgba(255,255,255,255), rgba(255,255,255,0));
+}
+
+
+
+button.default{
+    background-color: revert;
+    background-image: revert;
+    border:revert;
+    font-family:revert;
+    padding:revert;
+}
+
+#chat h1,h3{
+    text-align: center;
+}            
+#chat h3{
+    font-style: italic;
+}
+
+.printout:has(img[alt="ChatGPT"]){
+    display:none;
+    background-color: rgb(16, 163, 127);
+    min-width: 30px;
+    min-height: 30px;
+    padding:.25em;
+}
+
+
+.printout>img[alt="ChatGPT"]{
+    filter:invert(1);
+}
+
+@media print{
+    .printout:has(img[alt="ChatGPT"]){
+        display: block;
+        box-shadow: inset 0 0 0 1000px rgb(16, 163, 127);
+    }
+    .noprint{
+        display:none !important;
+    }
+}

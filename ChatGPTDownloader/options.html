@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ChatGPT Downloader</title>
+        <link rel="icon" type="image/x-icon" href="images/icon-32.png">
+        <link rel="stylesheet" href="chat.css">
+        <link rel="stylesheet" href="options.css">
+    </head>
+    <body>
+        <div id="menu">
+            <h1>Saved Chats</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="saved">
+                </tbody>
+            </table>    
+        </div>
+        <div id="chat">
+            <div id="exitchat" class="noprint"><button class="default">Back</button></div>
+            <div id="print" class="noprint"><button class="default">Print</button></div>
+            <div id="scrolltop" class="noprint"><button class="default">Back to Top</button></div>
+            <h1 id="chattitle"></h1>
+            <h3 id="chatdate"></h3>
+            <div id="chatlog" class="flex flex-col items-center text-sm dark:bg-gray-800"></div>
+        </div>
+        <a id="chatlogDownload" style="display:none; user-select: none;"></a>
+        <script src="options.js"></script>
+    </body>
+</html>

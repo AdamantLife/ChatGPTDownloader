@@ -1,0 +1,33 @@
+{
+  "name": "ChatGPT Downloader",
+  "description": "Downloads ChatGPT Conversations or Archive them for Offline Use",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions":[
+    "storage"
+  ],"web_accessible_resources": [{
+    "matches": ["<all_urls>"],
+    "resources": ["chatgpt.js"]
+  }],
+  "icons":{
+    "32":"images/icon-32.png",
+    "48":"images/icon-48.png"
+  },
+  "action": {
+    "default_icon":{
+      "32":"images/icon-32.png",
+      "48":"images/icon-48.png"
+    },
+    "default_title": "ChatGPT Downloader"
+  },
+  "options_page":"options.html",
+  "background":{
+    "service_worker":"background.js"
+  },
+  "content_scripts":[
+    {
+      "matches":["*://chat.openai.com/chat/*"],
+      "js":["chatdownloader.js"]
+    }
+  ]
+}
