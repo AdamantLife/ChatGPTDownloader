@@ -1,6 +1,8 @@
 # ChatGPTDownloader
  Browser Extension to Download ChatGPT Sessions or Save for Offline use in-Browser 
 
+[Demo and Overview Available on Youtube](https://youtu.be/jEHCJhz4ed0)
+
 &nbsp;
 # Installation
 You have two options:
