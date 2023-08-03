@@ -27,7 +27,7 @@ export function isLoaded(titleLoading=true, responseLoading=true){
  */
 export function getGUID(){
     // At the moment it's also possible to just take the last segment of href
-    let match = /.*chat\/(?<GUID>[^?/]*?)(?:\/|\?|$)/.exec(window.location.href)
+    let match = /.*(chat|c)\/(?<GUID>[^?/]*?)(?:\/|\?|$)/.exec(window.location.href)
     return !match || match.groups.GUID;
 }
 
@@ -150,7 +150,7 @@ export function chatTitleisActive(element){
  */
 export function getChatLogElement(){
     // See ChatLogElement typedef for more information about this selector
-    return document.querySelector(".flex.flex-col.items-center.text-sm");
+    return document.querySelector(".flex.flex-col.text-sm:has(header)");
 }
 
 /**

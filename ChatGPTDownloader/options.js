@@ -73,7 +73,7 @@ function loadChatLogs(results){
     let tbody = document.getElementById("saved");
     while(tbody.lastElementChild) tbody.lastElementChild.remove();
     if(!results || typeof results == "undefined") return;
-    results.sort((a,b)=>a.GUID.localeCompare(b.GUID)).sort((a,b)=>b.timestamp - a.timestamp);
+    results.sort((a,b)=>(""+a.GUID).localeCompare(b.GUID+"")).sort((a,b)=>b.timestamp - a.timestamp);
     for(let downloadOutput of results){
         tbody.insertAdjacentHTML('beforeend', `<tr data-guid="${downloadOutput.GUID}" data-timestamp="${downloadOutput.timestamp}">
     <td title="Open">${downloadOutput.title}</td>
