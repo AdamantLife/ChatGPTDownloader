@@ -34,10 +34,10 @@ export function getGUID(){
 /**    CHAT TITLE SIDEBAR FUNCTIONS  
  * 
  *      Chat Titles are hyperlinks (<a></a>) available on the Sidebar.
- * Neither they nor their parent have a well-defined selector, but their
- * child DIV containing the Title's String can be identified with
- * .text-ellipsis (currently not used for anything else) and therefore
- * they can be selected using a:has(.text-ellipsis).
+ *      
+ *      In the newest build the sidebar now has an aria label "Chat history".
+ *      The list is divided into groups via ol elements and chats are listed
+ *      as li elements. We are still using the hyperlink selector for now.
  * 
  *      ChatGPT is typically loaded with no Active Chat;
  * prompting ChatGPT creates a new Active Chat.
@@ -45,11 +45,8 @@ export function getGUID(){
  *      Whenever a new Chat is Activated, the page state is pushed
  * to history and the url updated, but the page is not actually (re)loaded.
  * 
- *      Active Chat Titles have two additional icons, which can be used to
- * determine which Title is active. The current implementation checks for
- * querySelector(".text-ellipse").nextSibling, but the Pen SVG
- * (<path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z">)
- * could also be used as it is not currently being used anywhere else.
+ *      Active Chat now has an ellipse svg next to it (but now ellipse class) inside of a button.
+ *      The previously used pen svg has been moved to the "New Chat" button.
 */
 
 /**
@@ -62,7 +59,7 @@ export function getGUID(){
  * @returns {NodeList.<ChatTitleElement>} - The Chat Title Elements
  */
 export function getChatTitles(){
-    return document.body.querySelectorAll("a:has(.text-ellipsis)");
+    return document.body.querySelectorAll(`[aria-label="Chat history"] li a`);
 }
 
 /**
@@ -80,7 +77,7 @@ export function getActiveChatTitle(){
  * @returns {Boolean} - Whether the Chat Title Element is the current chat
  */
 export function chatTitleisActive(element){
-    return Boolean(element.querySelector(".text-ellipsis").nextElementSibling);
+    return Boolean(element.nextElementSibling?.querySelector("button"));
 }
 
 /**    CHAT LOG FUNCTIONS 
@@ -119,12 +116,9 @@ export function chatTitleisActive(element){
 /**
  * The ChatLogElement is the direct parent DIV of DialogBlockElements.
  * At the moment, there is no way of selecting it that is more
- * stable/precise than ".flex.flex-col.items-center.text-sm".
- * Each of these selectors are used multiple times throughout
- * the DOM (as they provide generic css formatting); for this
- * reason, even though ".flex-col.items-center" is the minimal
- * reference for it, it is probable that that selector will break
- * before the current selector will.
+ * stable/precise than ".pb-9:has(.text-token-text-primary)".
+ * .pb-9 is currently unique but the site has changed numerous
+ * times so this may not be sufficient in the future.
  * @typedef {Element} ChatLogElement
  */
 
@@ -150,7 +144,7 @@ export function chatTitleisActive(element){
  */
 export function getChatLogElement(){
     // See ChatLogElement typedef for more information about this selector
-    return document.querySelector(".flex.flex-col.text-sm:has(header)");
+    return document.querySelector(".pb-9:has(.text-token-text-primary)");
 }
 
 /**

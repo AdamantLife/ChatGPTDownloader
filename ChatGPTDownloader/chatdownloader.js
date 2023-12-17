@@ -307,6 +307,8 @@ async function completeSave(output){
         }).then(set=>{
             let al = document.getElementById("alert");
             al.textContent = "Chat Log Saved";
+            al.style.cursor = "pointer";
+            al.onclick = ()=>chrome.runtime.sendMessage({action:"open"});
             al.classList.add("shown");
             return set;
         });
@@ -412,7 +414,7 @@ function setupDownloadButtons(){
         border:revert;
     }
 </style>`);
-    document.getElementById("alert").addEventListener("animationend", (event)=>{event.target.classList.remove('shown'); event.target.textContent = "";});
+    document.getElementById("alert").addEventListener("animationend", (event)=>{event.target.classList.remove('shown'); event.target.textContent = ""; event.target.style.cursor = "auto";event.target.onclick = null;});
     document.getElementById("downloadexpand").onclick = ()=>document.getElementById("downloadbuttons").classList.toggle("shown");
     document.getElementById("downloadbutton").onclick = download;
     document.getElementById("downloadallbutton").onclick = downloadAll;
